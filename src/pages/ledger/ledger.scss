@@ -1,0 +1,178 @@
+@use "../../assets/scss/mixin.scss" as *;
+
+.ledger-wrapper {
+  padding: 40px;
+  background-color: var(--light-bg);
+  min-height: 100vh;
+
+  .sheet-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+
+    h3 {
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .btn-add {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--white);
+      border: 1px solid var(--black);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      .plus-icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: var(--black);
+        padding: 4px;
+        svg{
+          fill: var(--white);
+        }
+      }
+      &:hover {
+        background-color: var(--black);
+        color: var(--white);
+      }
+    }
+  }
+
+  .filters {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    .ant-form-item,
+    .btn-primary {
+      margin: 0;
+      width: auto;
+      min-width: 170px;
+    }
+
+    .search {
+      width: 300px;
+    }
+
+    .btn-primary {
+      border-radius: 30px;
+      padding: 12px 14px;
+    }
+  }
+
+  .sheet-table {
+    background: var(--white);
+    border-radius: 5px;
+    overflow: hidden;
+
+    .ant-table-thead>tr>th {
+      background: var(--black);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .ant-table-cell {
+      &::before {
+        content: none !important;
+      }
+    }
+
+    td {
+      color: #5C5C5C;
+      font-weight: 500;
+      font-size: 14px;
+
+    }
+
+    .status-tag {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 12px;
+      min-width: 75px;
+
+      &.pending {
+        background: #FFB3021A;
+        color: var(--yellow);
+      }
+
+      &.completed {
+        background: #f6ffed;
+        color: var(--green);
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  .sheet-modal {
+    .ant-modal-content {
+      border-radius: 10px;
+      padding: 25px;
+    }
+
+    .ant-modal-title {
+      text-align: center;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--text);
+    }
+
+    .sub-heading {
+      text-align: center;
+      color: var(--secondary);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .btn-primary {
+        width: 100%;
+        background-color: var(--black);
+        color: var(--white);
+        border: none;
+        padding: 12px 0;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+
+    .radio-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      .radio-label {
+        font-weight: 600;
+
+        input {
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+}

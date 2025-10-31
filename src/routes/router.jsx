@@ -14,15 +14,14 @@ const Router = () => {
         { path: "/", element: <Login /> },
       ]
     },
-      {
+    {
       element: <Layout />,
-
       children: [
         {
           element: <PrivateRoute />,
           children: RoutesArray
         }],
-      },
+    },
   ]);
   return <RouterProvider router={router} />;
 };

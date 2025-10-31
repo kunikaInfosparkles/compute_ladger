@@ -1,7 +1,7 @@
 import React from "react";
 import { Input, InputNumber, Select, Checkbox, Switch, Form } from "antd";
 import { Controller } from "react-hook-form";
-import { UploadIcon } from "../icon/icons";
+import { Calender, UploadIcon } from "../icon/icons";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
 
@@ -259,6 +259,7 @@ export const DatePickerInput = ({
           onChange={(date) => field.onChange(date ? date.format(format) : null)}
           style={{ width: "100%" }}
           disabledDate={disabledDate}
+          suffixIcon={<Calender />} 
         />
       </Form.Item>
     )}
