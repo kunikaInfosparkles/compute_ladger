@@ -1,5 +1,8 @@
 @use "../../assets/scss/mixin.scss" as *;
 
+.ant-dropdown-menu-item{
+   gap: 10px;
+ }
 .sheets-wrapper {
   padding: 40px 0;
   background-color: var(--light-bg);
@@ -64,7 +67,7 @@
     }
 
     .search {
-      width: 300px;
+         width: 30%;
     }
 
     .btn-primary {
@@ -77,7 +80,6 @@
     background: var(--white);
     border-radius: 5px;
     overflow: hidden;
-
     .ant-table-thead>tr>th {
       background: var(--black);
       color: var(--white);
