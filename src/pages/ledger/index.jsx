@@ -1,69 +1,91 @@
 import React, { useState } from "react";
-import { Table, Modal, Row, Col, DatePicker, Select, Input, Pagination } from "antd";
-import { PlusOutlined, MoreOutlined } from "@ant-design/icons";
+import { Table, Pagination, Row, Col } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import "./ledger.scss";
 import { useForm } from "react-hook-form";
-import { CheckboxInput, DatePickerInput, SelectInput, TextInput } from "../../components/formFields";
-import { successMsg } from "../../utils/customFn";
+import { DatePickerInput, SelectInput } from "../../components/formFields";
+import CreateLedger from "./createLedger";
+import image from "../../utils/helpers";
 
 const Ledger = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [sheets, setSheets] = useState([
         {
             key: 1,
-            account: "Real State",
-            description: "Street corner house",
+            reference: "First Time pay",
+            paymode: "Online",
             date: "20-2-2025",
             totalAmount: "₹10,000.00",
             dueAmount: "₹9,000.00",
-            status: "Pending",
+            balance: "₹9,000.00",
         },
         {
             key: 2,
-            account: "Real State",
-            description: "Oceanview Apartment",
+            reference: "He gave in half a month",
+            paymode: "Case amount",
             date: "10-1-2025",
             totalAmount: "₹12,500.00",
             dueAmount: "₹0.00",
-            status: "Completed",
+            balance: "₹9,000.00",
+        },
+        {
+            key: 3,
+            reference: "First Time pay",
+            paymode: "Online",
+            date: "20-2-2025",
+            totalAmount: "₹10,000.00",
+            dueAmount: "₹9,000.00",
+            balance: "₹9,000.00",
+        },
+        {
+            key: 4,
+            reference: "He gave in half a month",
+            paymode: "Case amount",
+            date: "10-1-2025",
+            totalAmount: "₹12,500.00",
+            dueAmount: "₹0.00",
+            balance: "₹9,000.00",
+        },
+        {
+            key: 5,
+            reference: "First Time pay",
+            paymode: "Online",
+            date: "20-2-2025",
+            totalAmount: "₹10,000.00",
+            dueAmount: "₹9,000.00",
+            balance: "₹9,000.00",
+        },
+        {
+            key: 6,
+            reference: "He gave in half a month",
+            paymode: "Case amount",
+            date: "10-1-2025",
+            totalAmount: "₹12,500.00",
+            dueAmount: "₹0.00",
+            balance: "₹9,000.00",
         },
     ]);
 
-    const { control, handleSubmit, reset } = useForm();
+    const { control } = useForm();
 
-    const onSubmit = (data) => {
-        setSheets([
-            ...sheets,
-            {
-                key: sheets.length + 1,
-                account: data.account,
-                description: data.description,
-                date: new Date().toLocaleDateString(),
-                totalAmount: `₹${data.amount}`,
-                dueAmount: "₹0.00",
-                status: "Pending",
-            },
-        ]);
-        successMsg("Sheet created successfully!");
-        setIsModalOpen(false);
-        reset();
-    };
-
+    const handleCloseModal = () => {
+        setIsModalOpen(false)
+    }
     const columns = [
         {
             title: "Remarks / Reference",
-            dataIndex: "account",
-            key: "account",
+            dataIndex: "reference",
+            key: "reference",
         },
         {
             title: "Date",
-            dataIndex: "description",
-            key: "description",
+            dataIndex: "date",
+            key: "date",
         },
         {
             title: "Payment Mode",
-            dataIndex: "date",
-            key: "date",
+            dataIndex: "paymode",
+            key: "paymode",
         },
         {
             title: "Credit",
@@ -77,16 +99,12 @@ const Ledger = () => {
         },
         {
             title: "Balance (₹)",
-            dataIndex: "status",
-            key: "status",
-            render: (text) => (
-                <span className={`status-tag ${text.toLowerCase()}`}>{text}</span>
-            ),
+            dataIndex: "balance",
+            key: "balance",
         },
         {
             title: "",
             key: "actions",
-            render: () => <MoreOutlined className="more-icon" style={{ cursor: 'pointer' }} />,
         },
     ];
 
@@ -105,14 +123,16 @@ const Ledger = () => {
                 </div>
 
                 <div className="filters">
-                    <div className="search">
-                        <TextInput control={control} name="Search" placeholder="Search" />
+
+                    <div className="total">
+                        <p>Total Given Amount</p>
+                        <h4>₹10,000.00</h4>
                     </div>
-                    <DatePickerInput control={control} name="fromDate" placeholder="From date" />
-                    <DatePickerInput control={control} name="toDate" placeholder="To date" />
-                    <SelectInput control={control} name="status" placeholder="Status" />
-                    <SelectInput control={control} name="typeof" placeholder="Type of" />
-                    <button className="btn-primary" type="button">Find</button>
+                    <div className="filters-options">
+                        <DatePickerInput control={control} name="fromDate" placeholder="From date" />
+                        <DatePickerInput control={control} name="toDate" placeholder="To date" />
+                        <button className="btn-primary" type="button">Find</button>
+                    </div>
                 </div>
 
                 <Table
@@ -125,45 +145,35 @@ const Ledger = () => {
                 <div className="pagination">
                     <Pagination defaultCurrent={1} total={50} />
                 </div>
-
+                <div className="footer-section">
+                    <Row gutter={[20, 20]}>
+                        <Col md={12} sm={24}>
+                            <div className="left-col">
+                                <SelectInput control={control} name="status" placeholder="Status" />
+                                <button className="btn-primary" type="button">Update</button>
+                                <button className="btn-print" type="button"><img src={image['print.svg']} alt="print"/></button>
+                            </div>
+                        </Col>
+                        <Col md={12} sm={24}>
+                        <div className="right-col">
+                            <div className="data">
+                                <p>Total Credited</p>
+                                <h3>₹8000.00</h3>
+                            </div>
+                            <div className="data">
+                                <p>Total Debited</p>
+                                <h3>₹7000.00</h3>
+                            </div>
+                            <div className="data">
+                                <p>Due Amount</p>
+                                <h3>₹9000.00</h3>
+                            </div>
+                        </div>
+                        </Col>
+                    </Row>
+                </div>
                 {/* Create Sheet Modal */}
-                <Modal
-                    title="Create Sheet"
-                    open={isModalOpen}
-                    onCancel={() => setIsModalOpen(false)}
-                    footer={null}
-                    className="group-modal"
-                >
-                    <p className="sub-heading">This pop-up creates a new sheet in your page</p>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <TextInput
-                            control={control}
-                            name="account"
-                            label="Account / Party Name"
-                            placeholder="Enter your account / party"
-                        />
-
-                        <CheckboxInput name='fixed' control={control} label='Fixed Amount' />
-
-                        <TextInput
-                            control={control}
-                            name="amount"
-                            label="Total Amounts"
-                            placeholder="Enter your total amounts"
-                        />
-
-                        <TextInput
-                            control={control}
-                            name="description"
-                            label="Description / Particulars"
-                            placeholder="Enter your text"
-                        />
-
-                        <button type="submit" className="btn-primary">
-                            Create Now
-                        </button>
-                    </form>
-                </Modal>
+                <CreateLedger isModalOpen={isModalOpen} closeModal={handleCloseModal} setSheets={setSheets} />
             </div>
         </div>
     );

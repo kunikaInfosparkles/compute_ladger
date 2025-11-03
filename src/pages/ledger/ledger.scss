@@ -1,8 +1,7 @@
 @use "../../assets/scss/mixin.scss" as *;
 
 .ledger-wrapper {
-  padding: 40px;
-  background-color: var(--light-bg);
+  padding: 40px 0;
   min-height: 100vh;
 
   .sheet-header {
@@ -13,6 +12,16 @@
     padding-bottom: 14px;
     margin-bottom: 20px;
     border-bottom: 1px solid var(--border);
+
+    .left-heading {
+      h3 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
 
     h3 {
       font-size: 32px;
@@ -25,24 +34,27 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background-color: var(--white);
+      background-color: var(--light-bg);
       border: 1px solid var(--black);
       padding: 8px 20px;
       border-radius: 30px;
       font-weight: 600;
       cursor: pointer;
       transition: 0.3s;
-      .plus-icon{
+
+      .plus-icon {
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
         background-color: var(--black);
         padding: 4px;
-        svg{
+
+        svg {
           fill: var(--white);
         }
       }
+
       &:hover {
         background-color: var(--black);
         color: var(--white);
@@ -55,6 +67,26 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    justify-content: space-between;
+
+    .total {
+      p {
+        font-size: 12px;
+        margin-bottom: 4px;
+      }
+
+      h4 {
+        font-size: 24px;
+        font-weight: 600;
+      }
+    }
+
+    .filters-options {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+    }
 
     .ant-form-item,
     .btn-primary {
@@ -120,57 +152,64 @@
   .pagination {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
+    margin: 20px 0;
+    background-color: var(--white);
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 5px;
+    border: 1px solid var(--border2);
+
+    ul {
+      margin: 0;
+    }
   }
 
-  .sheet-modal {
-    .ant-modal-content {
-      border-radius: 10px;
-      padding: 25px;
-    }
+  .footer-section {
+    padding: 12px 14px;
+    background-color: var(--white);
+    border-radius: 5px;
+    border: 1px solid var(--border2);
 
-    .ant-modal-title {
-      text-align: center;
-      font-weight: 700;
-      font-size: 24px;
-      color: var(--text);
-    }
-
-    .sub-heading {
-      text-align: center;
-      color: var(--secondary);
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    form {
+    .left-col {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
+      align-items: center;
+      gap: 14px;
+
+      .ant-form-item {
+        margin: 0;
+        width: 160px;
+      }
 
       .btn-primary {
-        width: 100%;
-        background-color: var(--black);
-        color: var(--white);
-        border: none;
-        padding: 12px 0;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
+        border-radius: 50px;
+        min-width: 180px;
+        padding: 13px;
+      }
+
+      .btn-print {
+        border: 1px solid var(--black);
+        border-radius: 50%;
+        background-color: transparent;
+        outline: none;
+        padding: 12px;
       }
     }
 
-    .radio-group {
+    .right-col {
       display: flex;
+      justify-content: space-around;
       align-items: center;
-      gap: 15px;
 
-      .radio-label {
-        font-weight: 600;
+      .data {
+        p {
+          color: #5C5C5C;
+          font-size: 12px;
+          font-weight: 500;
+        }
 
-        input {
-          margin-right: 6px;
+        h3 {
+          font-size: 18px;
+          font-weight: 600;
         }
       }
     }

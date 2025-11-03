@@ -9,7 +9,7 @@ const CreateGroupModal = ({handleSubmit,handleAddGroup,errors,control,onOpen,onC
             open={onOpen}
             onCancel={onClose}
             footer={null}
-            className="group-modal"
+            className="group-modal common-modal"
         >
             <p className='sub-heading'>This pop-up creates a new file in your page</p>
             <form onSubmit={handleSubmit(handleAddGroup)}>

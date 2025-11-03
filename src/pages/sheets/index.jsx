@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { Table, Modal, Row, Col, DatePicker, Select, Input, Pagination } from "antd";
+import { Table, Pagination } from "antd";
 import { PlusOutlined, MoreOutlined } from "@ant-design/icons";
 import "./sheets.scss";
 import { useForm } from "react-hook-form";
-import { CheckboxInput, DatePickerInput, SelectInput, TextInput } from "../../components/formFields";
-import { successMsg } from "../../utils/customFn";
+import {  DatePickerInput, SelectInput, TextInput } from "../../components/formFields";
+
+import CreateSheet from "./createSheet";
 
 const Sheets = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleClose = () =>{
+    setIsModalOpen(false)
+  }
   const [sheets, setSheets] = useState([
     {
       key: 1,
@@ -29,25 +33,8 @@ const Sheets = () => {
     },
   ]);
 
-  const { control, handleSubmit, reset } = useForm();
+  const { control } = useForm();
 
-  const onSubmit = (data) => {
-    setSheets([
-      ...sheets,
-      {
-        key: sheets.length + 1,
-        account: data.account,
-        description: data.description,
-        date: new Date().toLocaleDateString(),
-        totalAmount: `₹${data.amount}`,
-        dueAmount: "₹0.00",
-        status: "Pending",
-      },
-    ]);
-    successMsg("Sheet created successfully!");
-    setIsModalOpen(false);
-    reset();
-  };
 
   const columns = [
     {
@@ -80,7 +67,7 @@ const Sheets = () => {
       dataIndex: "status",
       key: "status",
       render: (text) => (
-        <span className={`status-tag ${text.toLowerCase()}`}>{text}</span>
+        <span className={`status-tag ${text?.toLowerCase()}`}>{text}</span>
       ),
     },
     {
@@ -96,7 +83,7 @@ const Sheets = () => {
         <div className="sheet-header">
           <h3>Sheets</h3>
           <button className="btn-add" onClick={() => setIsModalOpen(true)}>
-           <div className="plus-icon"> <PlusOutlined color="#fff"/></div> Add New Sheet
+            <div className="plus-icon"> <PlusOutlined color="#fff" /></div> Add New Sheet
           </button>
         </div>
 
@@ -122,45 +109,8 @@ const Sheets = () => {
           <Pagination defaultCurrent={1} total={50} />
         </div>
 
-        {/* Create Sheet Modal */}
-        <Modal
-          title="Create Sheet"
-          open={isModalOpen}
-          onCancel={() => setIsModalOpen(false)}
-          footer={null}
-          className="group-modal"
-        >
-          <p className="sub-heading">This pop-up creates a new sheet in your page</p>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <TextInput
-              control={control}
-              name="account"
-              label="Account / Party Name"
-              placeholder="Enter your account / party"
-            />
-
-            <CheckboxInput  name='fixed' control={control} label='Fixed Amount'/>
-
-            <TextInput
-              control={control}
-              name="amount"
-              label="Total Amounts"
-              placeholder="Enter your total amounts"
-            />
-
-            <TextInput
-              control={control}
-              name="description"
-              label="Description / Particulars"
-              placeholder="Enter your text"
-            />
-
-            <button type="submit" className="btn-primary">
-              Create Now
-            </button>
-          </form>
-        </Modal>
       </div>
+      <CreateSheet isModalOpen={isModalOpen} closeModal={handleClose} setSheets={setSheets}  sheets={sheets}/>
     </div>
   );
 };

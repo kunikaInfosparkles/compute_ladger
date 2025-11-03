@@ -24,7 +24,7 @@
     }
 
     @else if $breakpoint ==xl {
-        @media (max-width: 1400px) {
+        @media (max-width: 1440px) {
             @content;
         }
     }

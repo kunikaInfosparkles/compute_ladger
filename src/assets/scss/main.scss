@@ -36,6 +36,7 @@ body {
   font-weight: 400;
   line-height: 1.1;
   background-color: var(--light-color);
+  color: var(--textc);
 }
 
 button[type='button'] {
@@ -144,18 +145,22 @@ button {
     padding: 11px 14px;
     border-radius: 50px;
     background-color: var(--light-color);
-
     &:hover {
       border-color: var(--primary);
     }
-
+    
     &:focus-visible {
       box-shadow: unset;
     }
-
+    
     &::placeholder {
       color: #5F7085;
       font-size: 14px;
+    }
+  }
+  textarea{
+    &.ant-input-outlined {
+    border-radius: 5px;
     }
   }
   .ant-picker-outlined {
@@ -274,7 +279,20 @@ button {
     }
   }
 }
+  .custome-radio {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    accent-color: #000;
+    color: #7F7F7F;
+    font-weight: 600;
 
+    input {
+      height: 18px;
+      width: 18px;
+    }
+  }
 //custom radio button style 
 .ant-switch {
   &.ant-switch-checked {
@@ -404,7 +422,7 @@ button {
   }
 }
 
-.group-modal {
+.common-modal {
     .ant-modal-content {
         border-radius: 8px;
         padding: 30px 16px;
