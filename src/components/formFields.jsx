@@ -126,7 +126,8 @@ export const TextAreaInput = ({
   rules,
   placeholder,
   className,
-  maxLength
+  maxLength,
+  readOnly
 }) => (
   <Controller
     name={name}
@@ -146,6 +147,7 @@ export const TextAreaInput = ({
           rows={4}
           placeholder={placeholder}
           maxLength={maxLength}
+          readOnly={readOnly}
         />
       </Form.Item>
     )}
